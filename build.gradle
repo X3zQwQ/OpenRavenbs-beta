@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'keystrokesmod'
+version = '17'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'], exclude: ['test/**'])
+    testImplementation files('libs/test/junit-4.13.2.jar', 'libs/test/hamcrest-core-1.3.jar')
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.release = 8
+    }
+    options.compilerArgs += ['-proc:none', '-Xpkginfo:always']
+}
+
+jar {
+    archiveFileName = 'raven-bS-17.jar'
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+    manifest.from('src/main/resources/META-INF/MANIFEST.MF')
+}
+
+test {
+    dependsOn jar
+    systemProperty 'project.jar', tasks.jar.archiveFile.get().asFile.absolutePath
+    maxHeapSize = '256m'
+    testLogging {
+        events 'passed', 'failed', 'skipped'
+        showStandardStreams = true
+    }
+}

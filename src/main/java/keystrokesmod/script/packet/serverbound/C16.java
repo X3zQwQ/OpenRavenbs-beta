@@ -1,0 +1,24 @@
+package keystrokesmod.script.packet.serverbound;
+
+import keystrokesmod.utility.Utils;
+import net.minecraft.network.play.client.C16PacketClientStatus.EnumState;
+import net.minecraft.network.play.client.C16PacketClientStatus;
+
+public class C16 extends CPacket {
+
+    public String status;
+
+    public C16(String status) {
+        super(null);
+        this.status = status;
+    }
+
+    public C16(C16PacketClientStatus packet) {
+        super(packet);
+        this.status = packet.func_149435_c().name();
+    }
+
+    public C16PacketClientStatus convert() {
+        return new C16PacketClientStatus(Utils.getEnum(EnumState.class, this.status));
+    }
+}
