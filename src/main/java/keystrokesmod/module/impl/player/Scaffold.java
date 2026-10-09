@@ -2113,7 +2113,7 @@ public class Scaffold extends Module {
     }
 
     private float quantizeRotation(float angle) {
-        return (float) (angle - angle % 0.0096F);
+        return (float) (angle - (double) angle % 0.009600000455975533);
     }
 
     private float jitter(float maximumDegrees) {

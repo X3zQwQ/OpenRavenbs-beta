@@ -233,7 +233,7 @@ public class Target implements Comparable<Target>, Iterable<AbstractInsnNode> {
 
     public MethodInsnNode findInitNodeFor(TypeInsnNode newNode) {
         int start = this.indexOf(newNode);
-        for (java.util.Iterator<AbstractInsnNode> insnIterator = this.insns.iterator(); insnIterator.hasNext(); ) {
+        for (java.util.Iterator<AbstractInsnNode> insnIterator = this.insns.iterator(start); insnIterator.hasNext(); ) {
             AbstractInsnNode insn = insnIterator.next();
             if (insn instanceof MethodInsnNode && insn.getOpcode() == 183) {
                 MethodInsnNode methodNode = (MethodInsnNode) insn;

@@ -62,7 +62,7 @@ public class BeforeNew extends InjectionPoint {
 
     protected boolean findCtor(InsnList insns, TypeInsnNode newNode) {
         int indexOf = insns.indexOf(newNode);
-        for (java.util.Iterator<AbstractInsnNode> insnIterator = insns.iterator(); insnIterator.hasNext(); ) {
+        for (java.util.Iterator<AbstractInsnNode> insnIterator = insns.iterator(indexOf); insnIterator.hasNext(); ) {
             AbstractInsnNode insn = insnIterator.next();
             if (insn instanceof MethodInsnNode && insn.getOpcode() == 183) {
                 MethodInsnNode methodNode = (MethodInsnNode) insn;

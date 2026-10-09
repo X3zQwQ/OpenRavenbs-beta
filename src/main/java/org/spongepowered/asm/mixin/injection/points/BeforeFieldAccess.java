@@ -76,7 +76,7 @@ public class BeforeFieldAccess extends BeforeInvoke {
 
     public static AbstractInsnNode findArrayNode(InsnList insns, FieldInsnNode fieldNode, int opcode, int searchRange) {
         int pos = 0;
-        for (java.util.Iterator<AbstractInsnNode> insnIterator = insns.iterator(); insnIterator.hasNext(); ) {
+        for (java.util.Iterator<AbstractInsnNode> insnIterator = insns.iterator(insns.indexOf(fieldNode) + 1); insnIterator.hasNext(); ) {
             AbstractInsnNode insn = insnIterator.next();
             if (insn.getOpcode() == opcode) {
                 return insn;

@@ -344,7 +344,7 @@ public class Displace extends Module {
                 return null;
             } else {
                 float coarseYaw = best.yaw;
-                for (double refinementOffset = -scanAngleStep + 1.5; refinementOffset < scanAngleStep; refinementOffset++) {
+                for (double refinementOffset = -scanAngleStep + 1.5; refinementOffset < scanAngleStep; refinementOffset += 1.5) {
                     if (!(Math.abs(refinementOffset) < 1.0E-4)) {
                         float candidateYaw = MathHelper.func_76142_g(coarseYaw + (float) refinementOffset);
                         best = this.selectBetterVoidYaw(best, candidateYaw, preferredYawPositive, preferredYawNegative, target, scanDistance, voidColumns, voidNeighborhoods, debugScan);

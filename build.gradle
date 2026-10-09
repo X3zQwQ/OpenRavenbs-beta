@@ -33,7 +33,8 @@ jar {
 test {
     dependsOn jar
     systemProperty 'project.jar', tasks.jar.archiveFile.get().asFile.absolutePath
-    maxHeapSize = '256m'
+    maxHeapSize = '64m'
+    jvmArgs '-XX:+UseSerialGC', '-XX:ReservedCodeCacheSize=32m'
     testLogging {
         events 'passed', 'failed', 'skipped'
         showStandardStreams = true

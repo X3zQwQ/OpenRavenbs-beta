@@ -426,7 +426,7 @@ class MixinApplicatorStandard {
             boolean gatherNodes = false;
             int trimAtOpcode = -1;
             LabelNode optionalInsn = null;
-            for (java.util.Iterator<AbstractInsnNode> insnIterator = ctor.instructions.iterator(); insnIterator.hasNext(); ) {
+            for (java.util.Iterator<AbstractInsnNode> insnIterator = ctor.instructions.iterator(init.marker); insnIterator.hasNext(); ) {
                 AbstractInsnNode insn = insnIterator.next();
                 if (insn instanceof LineNumberNode) {
                     line = ((LineNumberNode) insn).line;

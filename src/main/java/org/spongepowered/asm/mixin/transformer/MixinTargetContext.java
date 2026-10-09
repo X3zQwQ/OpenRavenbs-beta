@@ -402,7 +402,7 @@ public class MixinTargetContext extends ClassContext implements IMixinContext {
             if (Annotations.getInvisible(method, SoftOverride.class) == null) {
                 throw new InvalidMixinException(this, "Illegal imaginary super access: method " + method.name + method.desc + " is not decorated with @SoftOverride");
             } else {
-                for (java.util.Iterator<AbstractInsnNode> insnIterator = method.instructions.iterator(); insnIterator.hasNext(); ) {
+                for (java.util.Iterator<AbstractInsnNode> insnIterator = method.instructions.iterator(method.instructions.indexOf(fieldInsn)); insnIterator.hasNext(); ) {
                     AbstractInsnNode insn = insnIterator.next();
                     if (insn instanceof MethodInsnNode) {
                         MethodInsnNode methodNode = (MethodInsnNode) insn;
